@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Nodepad</string>
+    <string name="button_add_text">+ Texto</string>
+</resources>
