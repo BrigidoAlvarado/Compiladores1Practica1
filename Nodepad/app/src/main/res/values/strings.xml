@@ -3,4 +3,5 @@
     <string name="button_add_text">+ Texto</string>
     <string name="button_add_code">+ Codigo</string>
     <string name="press_text_button">Se ha presionado el boton de texto</string>
+    <string name="execute_buttom">Ejecutar</string>
 </resources>
