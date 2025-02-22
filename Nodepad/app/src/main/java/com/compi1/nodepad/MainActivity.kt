@@ -27,25 +27,51 @@ class MainActivity : ComponentActivity() {
         val cellsContainer: LinearLayout = findViewById(R.id.cells_container_layout)
 
 
+        //ACCION QUE EJECUTA EL BOTON DE AGREGAR CELDA DE TEXTO
         addTexButton.setOnClickListener{
 
-            // Se infla el layout que tiene el contenido de una celda
+            //Se infla el layout que contiene la celda de texto para que se pueda agregar al layout principal
             val inflaterContainer: LayoutInflater = LayoutInflater.from(this)
-            val newCell: View = inflaterContainer.inflate(R.layout.cell_layout, cellsContainer, false)
-            cellsContainer.addView(newCell)
+            //Se crea un nueva celda de texto y se agrega al layout que contiene a las celdas
+            val newCellText: View = inflaterContainer.inflate(R.layout.text_cell_layout, cellsContainer, false)
+            cellsContainer.addView(newCellText)
 
-            // Acceder a los elementos de la celda
-            val cellButton: Button = newCell.findViewById(R.id.execute_buttom)
-            val cellTex: TextView = newCell.findViewById(R.id.test_text)
-            val cellInputText: EditText = newCell.findViewById(R.id.inputTexteditText)
+            //CONFIGURACION DE LOS COMPONENETES DE LA CELDA DE TEXTO
 
-            //Accion del boton de la celda
-            cellButton.setOnClickListener{
+            // Acceder a los elementos de la celda de texto
+            val cellButtonText: Button = newCellText.findViewById(R.id.execute_buttom)
+            val cellTexViewText: TextView = newCellText.findViewById(R.id.outputTexView)
+            val cellInputText: EditText = newCellText.findViewById(R.id.inputTexteditText)
 
-                cellTex.setText("El boton de esta celda ya ha sido presionado \n NO ")
+            //Accion del boton ejecutar de la celda de texto
+            cellButtonText.setOnClickListener{
+                cellTexViewText.text = "El individuo a escrito " + cellInputText.text.toString()
             }
 
         }
 
+
+        //ACCCION QUE EJECUTA EL BOTON DE AGREGAR CODIGO
+        addCodeButton.setOnClickListener{
+
+            //Se infla el layout que contiene al celda de codigo para que se pueda agregar al layout principal
+            val inflaterCellCode: LayoutInflater = LayoutInflater.from(this)
+            //Se crea una nueva celda de codigo y se agregal al layout que contiene la celdas
+            val newCellCode: View = inflaterCellCode.inflate(R.layout.code_cell_layout, cellsContainer, false)
+            cellsContainer.addView(newCellCode)
+
+            //CONFIGUARACION DE LOS COMPONENTES DE LA CELDA DE CODIGO
+
+            //Acceder a los elementos de la celda de codigo
+            val cellButtonCode: Button = newCellCode.findViewById(R.id.executeButtomCode)
+            val cellTextViewCode: TextView = newCellCode.findViewById(R.id.outputCodeView)
+            val cellInputCode: EditText = newCellCode.findViewById(R.id.inputCodeEditText)
+
+            //Accion del boton de ejecutar de la celda de codigo
+            cellButtonCode.setOnClickListener{
+                cellTextViewCode.text = "El individuo a escrito " + cellInputCode.text.toString()
+            }
+
+        }
     }
 }

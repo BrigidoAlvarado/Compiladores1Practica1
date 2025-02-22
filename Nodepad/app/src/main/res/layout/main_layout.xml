@@ -14,14 +14,14 @@
             android:id="@+id/textButton"
             android:layout_width="203dp"
             android:layout_height="93dp"
-            android:background="@color/teal_700"
+            android:background="@android:color/holo_green_light"
             android:text="@string/button_add_text" />
 
         <Button
             android:id="@+id/codeButton"
             android:layout_width="match_parent"
             android:layout_height="92dp"
-            android:background="@android:color/holo_orange_light"
+            android:background="@android:color/holo_blue_light"
             android:text="@string/button_add_code" />
     </LinearLayout>
 
@@ -29,7 +29,7 @@
         android:id="@+id/cell_scrollview"
         android:layout_width="match_parent"
         android:layout_height="656dp"
-        android:background="@color/teal_200">
+        android:background="@android:color/holo_orange_light">
 
         <LinearLayout
             android:id="@+id/cells_container_layout"
