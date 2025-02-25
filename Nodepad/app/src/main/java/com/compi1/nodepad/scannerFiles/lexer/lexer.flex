@@ -1,7 +1,7 @@
 package com.compi1.nodepad.scannerFiles.lexer
 
 import java_cup.runtime.*;
-//importacion de la clase sym
+//importacion de la clase sym ...
 %%
 
 %class textLexer
