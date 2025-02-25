@@ -1,7 +1,8 @@
-package com.compi1.nodepad.scannerFiles.lexer
+package com.compi1.nodepad.scannerFiles.lexer;
 
 import java_cup.runtime.*;
-//importacion de la clase sym ...
+import com.compi1.nodepad.scannerFiles.parser.sym;
+
 %%
 
 %class textLexer
@@ -31,8 +32,9 @@ LineTerminator  = \r|\n|\r\n
 Space           = " "
 Word            = [a-bA-B]+
 Number          = [0-9]+
+PunctuationMarks= ("."|","|"?"|"¿"|"¡"|"!"!":"|";")
 Alphanumeric    = ({Word}|{Number})+
-Sentence        = ({Alphanumeric}|{Space}).+{LineTerminator}?
+Sentence        = {Alphanumeric}({Alphanumeric}|{Space}|{PunctuationMarks})+{LineTerminator}?
 
 %%
 //Marcadores para las cabeceras
@@ -52,11 +54,11 @@ Sentence        = ({Alphanumeric}|{Space}).+{LineTerminator}?
 
 //Lecutra de los marcadores para las listas enumeradas
 "1."{Space}             { return Symbol(sym.INIT_LIST,  yytext()); }
-[2-9][1-9]*.{Space}     { return Symbol(sym.ORDER_LIST, yytext()); }
+[2-9][1-9]*.{Space}     { return Symbol(sym.ITEM_NUM, yytext()); }
 
 
 //Lecutra de los marcadores para las listas de texto no numeradas
-\+{Space}               { return Symbol(sym.LIST_MARKER, yytext()); }
+\+{Space}               { return Symbol(sym.ITEM_LIST yytext()); }
 
 
 //Lecuta de textos alfanumericos con espacios que pueden o no terminar con un salto de linea

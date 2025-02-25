@@ -1,0 +1,136 @@
+package com.compi1.nodepad.scannerFiles.parser;
+
+import java_cup.runtime.*;
+import com.compi1.nodepad.scannerFiles.lexer.textLexer;
+//importacion de la clase de recoleccion de datos
+
+parser code {:
+
+public void unrecovered_syntax_error(Symbol cur_token) {
+            System.out.println("Error irrecuperable sobrecargado");
+        }
+
+:}
+
+/*      TERMINALES      */
+// Terminales de las cabeceras
+terminal H1, H2, H3, H4, H5, H6;
+
+// Terminales de los tipos de formatos
+terminal ITALIC, BOLD, ITALIC_BOLD;
+
+// Terminales de las listas numeradas
+terminal INIT_LIST, ITEM_NUM;
+
+// Terminales de las listas no numradas
+terminal ITEM_LIST;
+
+// Terminales  de las oraciones
+terminal SETENCE;
+
+/*      NO TERMINALES   */
+// No terminales asociados a texto
+non terminal text;
+non terminal header;
+non terminal parragraph;
+non terminal format;
+non terminal list;
+
+// No terminales asociados a cabecera
+non terminal header_mark;
+
+// No terminales asociados a parrafo
+non terminal sentences;
+
+// No terminales asociados a formato
+non terminal bold;
+non terminal italic;
+non terminal italic_bold;
+
+// No terminales asociodos a lista
+non terminal numbered_list;
+non terminal no_numbered_list;
+
+// No terminales asociados a lista numerada
+non terminal first_item;
+non terminal numbered_items;
+non terminal numbered_item;
+
+// No terminales asociados a lista no numerada
+non terminal no_numbered_items;
+non terminal no_numbered_item;
+
+/*THER GRAMMAR*/
+
+start with text;
+
+text ::= text header
+        | header
+        | text parragraph
+        | parragraph
+        | text format
+        | format
+        | text list
+        | list
+        ;
+
+header ::= header_mark SETENCE {: System.out.println("SE LEYO UN TITULO"):}
+        ;
+
+header_mark ::= H1
+              | H2
+              | H3
+              | H4
+              | H5
+              | H6
+              ;
+
+parragraph ::= sentences
+             ;
+
+sentences ::= sentences SETENCE
+            | SETENCE
+            ;
+
+format ::= bold
+         | italic
+         | italic_bold
+         ;
+
+bold ::= BOLD SETENCE BOLD
+       ;
+
+italic ::= ITALIC SETENCE ITALIC
+         ;
+
+italic_bold ::= ITALIC_BOLD SETENCE ITALIC_BOLD
+              ;
+
+list ::= numbered_list
+       | no_numbered_list
+       ;
+
+numbered_list ::= first_item numbered_items
+                | first_item
+                ;
+
+first_item ::= INIT_LIST SETENCE
+             ;
+
+numbered_items ::= numbered_items numbered_item
+                 | numbered_item
+                 ;
+
+numbered_item ::= ITEM_NUM SETENCE
+                ;
+
+no_numbered_list ::= no_numbered_item no_numbered_items
+                   | no_numbered_item
+                   ;
+
+no_numbered_items ::= no_numbered_item no_numbered_items
+                    | no_numbered_item
+                    ;
+
+no_numbered_item ::= ITEM_LIST SETENCE
+                   ;
