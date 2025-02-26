@@ -6,7 +6,7 @@
 package com.compi1.nodepad.scannerFiles.parser;
 
 import java_cup.runtime.*;
-import com.compi1.nodepad.scannerFiles.lexer.textLexer;
+import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.

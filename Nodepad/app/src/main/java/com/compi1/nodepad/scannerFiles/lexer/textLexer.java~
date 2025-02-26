@@ -701,8 +701,8 @@ private Symbol symbol(int type, Object value){
           case 19: break;
           case 6: 
             System.out.println("line: "+(yyline+1)+" "+"col: "+(yycolumn+1)+" "+"match: --"+zzToPrintable(yytext())+"--");
-            System.out.println("action [61] { return symbol(sym.ITEM_LIST yytext()); }");
-            { return symbol(sym.ITEM_LIST yytext());
+            System.out.println("action [61] { return symbol(sym.ITEM_LIST, yytext()); }");
+            { return symbol(sym.ITEM_LIST, yytext());
             } 
             // fall through
           case 20: break;

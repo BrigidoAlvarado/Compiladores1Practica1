@@ -5,7 +5,7 @@ import com.compi1.nodepad.scannerFiles.parser.sym;
 
 %%
 
-%class textLexer
+%class TextLexer
 %cup
 %public
 %line

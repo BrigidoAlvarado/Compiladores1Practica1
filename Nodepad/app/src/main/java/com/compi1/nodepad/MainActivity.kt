@@ -47,7 +47,6 @@ class MainActivity : ComponentActivity() {
             cellButtonText.setOnClickListener{
                 cellTexViewText.text = "El individuo a escrito " + cellInputText.text.toString()
             }
-
         }
 
 
