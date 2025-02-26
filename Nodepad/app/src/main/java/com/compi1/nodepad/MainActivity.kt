@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.compi1.nodepad.src.translate.TextTranslate
 
 class MainActivity : ComponentActivity() {
 
@@ -40,12 +41,14 @@ class MainActivity : ComponentActivity() {
 
             // Acceder a los elementos de la celda de texto
             val cellButtonText: Button = newCellText.findViewById(R.id.execute_buttom)
-            val cellTexViewText: TextView = newCellText.findViewById(R.id.outputTexView)
+            val outputTextView: TextView = newCellText.findViewById(R.id.outputTexView)
             val cellInputText: EditText = newCellText.findViewById(R.id.inputTexteditText)
 
             //Accion del boton ejecutar de la celda de texto
             cellButtonText.setOnClickListener{
-                cellTexViewText.text = "El individuo a escrito " + cellInputText.text.toString()
+                outputTextView.text = "El individuo a escrito " + cellInputText.text.toString()
+                val textTranslate = TextTranslate()
+                textTranslate.translate(cellInputText.text.toString())
             }
         }
 
@@ -69,6 +72,7 @@ class MainActivity : ComponentActivity() {
             //Accion del boton de ejecutar de la celda de codigo
             cellButtonCode.setOnClickListener{
                 cellTextViewCode.text = "El individuo a escrito " + cellInputCode.text.toString()
+
             }
 
         }

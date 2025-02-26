@@ -30,7 +30,7 @@ EmptyLine       = \s*\n
 
 LineTerminator  = \r|\n|\r\n
 Space           = " "
-Word            = [a-bA-B]+
+Word            = [a-zA-Z]+
 Number          = [0-9]+
 PunctuationMarks= ("."|","|"?"|"¿"|"¡"|"!"!":"|";")
 Alphanumeric    = ({Word}|{Number})+

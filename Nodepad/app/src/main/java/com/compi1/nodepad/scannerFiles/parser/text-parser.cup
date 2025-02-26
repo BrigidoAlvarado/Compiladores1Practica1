@@ -3,6 +3,7 @@ package com.compi1.nodepad.scannerFiles.parser;
 import java_cup.runtime.*;
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
 //importacion de la clase de recoleccion de datos
+import android.util.Log;
 
 parser code {:
 
@@ -79,7 +80,7 @@ text ::= text header
         | list
         ;
 
-header ::= header_mark SENTENCE {: System.out.println("SE LEYO UN TITULO"); :}
+header ::= header_mark SENTENCE {: Log.d("LexerDebug", "Se leyo un header"); :}
         ;
 
 header_mark ::= H1
