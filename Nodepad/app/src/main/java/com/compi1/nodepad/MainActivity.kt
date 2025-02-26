@@ -9,15 +9,20 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.compi1.nodepad.src.text_output.*
 import com.compi1.nodepad.src.translate.TextTranslate
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+            enableEdgeToEdge()
 
         setContentView(R.layout.main_layout)
+
+        val hi = TextSyntacOutput()
+        val h1 = StyleText()
+        val h2 = SizeText()
 
         //BOTON PARA AGREGAR UNA CELDA DE TEXTO
         val addTexButton: Button = findViewById(R.id.textButton)

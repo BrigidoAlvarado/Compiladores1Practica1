@@ -1,11 +1,16 @@
 package com.compi1.nodepad.scannerFiles.parser;
 
 import java_cup.runtime.*;
-import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
-//importacion de la clase de recoleccion de datos
+import java.util.List;
+
 import android.util.Log;
 
+import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
+import com.compi1.nodepad.src.text_output.*
+
 parser code {:
+
+private List<TextSyntacOutput> data;
 
 public void unrecovered_syntax_error(Symbol cur_token) {
             System.out.println("Error irrecuperable sobrecargado");
