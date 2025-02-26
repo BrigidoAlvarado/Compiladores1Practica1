@@ -26,7 +26,8 @@ terminal INIT_LIST, ITEM_NUM;
 terminal ITEM_LIST;
 
 // Terminales  de las oraciones
-terminal SETENCE;
+terminal SENTENCE;
+
 
 /*      NO TERMINALES   */
 // No terminales asociados a texto
@@ -60,6 +61,10 @@ non terminal numbered_item;
 non terminal no_numbered_items;
 non terminal no_numbered_item;
 
+/*      REGLAS DE PRECEDENCIA   */
+precedence right SENTENCE;
+precedence right ITEM_LIST;
+
 /*THER GRAMMAR*/
 
 start with text;
@@ -74,7 +79,7 @@ text ::= text header
         | list
         ;
 
-header ::= header_mark SETENCE {: System.out.println("SE LEYO UN TITULO"):}
+header ::= header_mark SENTENCE {: System.out.println("SE LEYO UN TITULO"); :}
         ;
 
 header_mark ::= H1
@@ -88,8 +93,8 @@ header_mark ::= H1
 parragraph ::= sentences
              ;
 
-sentences ::= sentences SETENCE
-            | SETENCE
+sentences ::= sentences SENTENCE
+            | SENTENCE
             ;
 
 format ::= bold
@@ -97,13 +102,13 @@ format ::= bold
          | italic_bold
          ;
 
-bold ::= BOLD SETENCE BOLD
+bold ::= BOLD SENTENCE BOLD
        ;
 
-italic ::= ITALIC SETENCE ITALIC
+italic ::= ITALIC SENTENCE ITALIC
          ;
 
-italic_bold ::= ITALIC_BOLD SETENCE ITALIC_BOLD
+italic_bold ::= ITALIC_BOLD SENTENCE ITALIC_BOLD
               ;
 
 list ::= numbered_list
@@ -114,14 +119,14 @@ numbered_list ::= first_item numbered_items
                 | first_item
                 ;
 
-first_item ::= INIT_LIST SETENCE
+first_item ::= INIT_LIST SENTENCE
              ;
 
 numbered_items ::= numbered_items numbered_item
                  | numbered_item
                  ;
 
-numbered_item ::= ITEM_NUM SETENCE
+numbered_item ::= ITEM_NUM SENTENCE
                 ;
 
 no_numbered_list ::= no_numbered_item no_numbered_items
@@ -132,5 +137,5 @@ no_numbered_items ::= no_numbered_item no_numbered_items
                     | no_numbered_item
                     ;
 
-no_numbered_item ::= ITEM_LIST SETENCE
+no_numbered_item ::= ITEM_LIST SENTENCE
                    ;

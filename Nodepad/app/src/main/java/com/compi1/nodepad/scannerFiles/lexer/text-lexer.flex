@@ -42,32 +42,32 @@ Sentence        = {Alphanumeric}({Alphanumeric}|{Space}|{PunctuationMarks})+{Lin
 "##"{Space}             { return symbol(sym.H2, yytext()); }
 "###"{Space}            { return symbol(sym.H3, yytext()); }
 "####"{Space}           { return symbol(sym.H4, yytext()); }
-"#####"{Space}          { return Symbol(sym.H5, yytext()); }
-"######"{Space}         { return Symbol(sym.H6, yytext()); }
+"#####"{Space}          { return symbol(sym.H5, yytext()); }
+"######"{Space}         { return symbol(sym.H6, yytext()); }
 
 
 //Lecutra de los marcadores para el tipo de formato de los textos
-\*                      { return Symbol(sym.ITALIC, yytext()); }
-\*\*                    { return Symbol(sym.BOLD, yytext()); }
-\*\*\*                  { return Symbol(sym.ITALIC_BOLD, yytext()); }
+\*                      { return symbol(sym.ITALIC, yytext()); }
+\*\*                    { return symbol(sym.BOLD, yytext()); }
+\*\*\*                  { return symbol(sym.ITALIC_BOLD, yytext()); }
 
 
 //Lecutra de los marcadores para las listas enumeradas
-"1."{Space}             { return Symbol(sym.INIT_LIST,  yytext()); }
-[2-9][1-9]*.{Space}     { return Symbol(sym.ITEM_NUM, yytext()); }
+"1."{Space}             { return symbol(sym.INIT_LIST,  yytext()); }
+[2-9][1-9]*.{Space}     { return symbol(sym.ITEM_NUM, yytext()); }
 
 
 //Lecutra de los marcadores para las listas de texto no numeradas
-\+{Space}               { return Symbol(sym.ITEM_LIST yytext()); }
+\+{Space}               { return symbol(sym.ITEM_LIST, yytext()); }
 
 
 //Lecuta de textos alfanumericos con espacios que pueden o no terminar con un salto de linea
-{Sentence}                  { return Symbol(sym.SENTENCE, yytext()); }
+{Sentence}                  { return symbol(sym.SENTENCE, yytext()); }
 
 
 //Lectura de Errores
-[^]                     { return Symbol(sym.error); }
+[^]                     { return symbol(sym.error); }
 
 
 //Fin del archivo
-<<EOF>>                 { return Symbol(sym.EOF);   }
+<<EOF>>                 { return symbol(sym.EOF);   }

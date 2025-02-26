@@ -41,6 +41,7 @@ android {
 
 dependencies {
 
+    implementation("com.github.vbmacher:java-cup-runtime:11b-20151001")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
