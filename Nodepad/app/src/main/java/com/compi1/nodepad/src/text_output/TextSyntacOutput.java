@@ -1,7 +1,5 @@
 package com.compi1.nodepad.src.text_output;
 
-import androidx.compose.foundation.lazy.LazyItemScope;
-
 import java.util.List;
 
 public class TextSyntacOutput {
@@ -11,6 +9,8 @@ public class TextSyntacOutput {
     private List<TextSyntacOutput> data ;
 
     public void hola (){
-        data.add(new SizeText());
+        data.add(new SizeText( "", 3));
+
+        var num = SizeText.H1;
     }
 }

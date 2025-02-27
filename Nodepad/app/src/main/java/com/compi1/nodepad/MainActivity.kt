@@ -1,6 +1,9 @@
 package com.compi1.nodepad
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -9,7 +12,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import com.compi1.nodepad.src.text_output.*
 import com.compi1.nodepad.src.translate.TextTranslate
 
 class MainActivity : ComponentActivity() {
@@ -19,10 +21,6 @@ class MainActivity : ComponentActivity() {
             enableEdgeToEdge()
 
         setContentView(R.layout.main_layout)
-
-        val hi = TextSyntacOutput()
-        val h1 = StyleText()
-        val h2 = SizeText()
 
         //BOTON PARA AGREGAR UNA CELDA DE TEXTO
         val addTexButton: Button = findViewById(R.id.textButton)
@@ -51,9 +49,16 @@ class MainActivity : ComponentActivity() {
 
             //Accion del boton ejecutar de la celda de texto
             cellButtonText.setOnClickListener{
-                outputTextView.text = "El individuo a escrito " + cellInputText.text.toString()
                 val textTranslate = TextTranslate()
-                textTranslate.translate(cellInputText.text.toString())
+                //Se envia el output para su traduccion
+                val translateResult = textTranslate.translate(cellInputText.text.toString())
+                outputTextView.text = translateResult
+                /*val span = SpannableString ("Prueba size")
+                var num = 12
+                span.setSpan( RelativeSizeSpan(num.toFloat() ), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                outputTextView.text = span.toString()
+
+                 */
             }
         }
 

@@ -6,7 +6,11 @@
 package com.compi1.nodepad.scannerFiles.parser;
 
 import java_cup.runtime.*;
+import java.util.ArrayList;
+import java.util.List;
+import android.util.Log;
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
+import com.compi1.nodepad.src.text_output.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -203,9 +207,15 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
 
-public void unrecovered_syntax_error(Symbol cur_token) {
-            System.out.println("Error irrecuperable sobrecargado");
-        }
+  private List<TextSyntacOutput> data = new ArrayList<>();
+
+  public Parser( TextLexer lex) {
+        super(lex);
+  }
+
+  public List<TextSyntacOutput> getData(){
+        return data;
+  }
 
 
 
@@ -323,7 +333,13 @@ class CUP$Parser$actions {
           case 9: // header ::= header_mark SENTENCE 
             {
               Object RESULT =null;
-		 System.out.println("SE LEYO UN TITULO"); 
+		int size_textleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int size_textright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Float size_text = (Float)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int h_bodyleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int h_bodyright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String h_body = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add( new SizeText(h_body, size_text)); Log.d("LexerDebug", "Se leyo un header"); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header",1, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -331,8 +347,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // header_mark ::= H1 
             {
-              Object RESULT =null;
-
+              Float RESULT =null;
+		 RESULT = SizeText.H1; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header_mark",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -340,8 +356,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 11: // header_mark ::= H2 
             {
-              Object RESULT =null;
-
+              Float RESULT =null;
+		 RESULT = SizeText.H2; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header_mark",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -349,8 +365,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 12: // header_mark ::= H3 
             {
-              Object RESULT =null;
-
+              Float RESULT =null;
+		 RESULT = SizeText.H3; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header_mark",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -358,8 +374,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 13: // header_mark ::= H4 
             {
-              Object RESULT =null;
-
+              Float RESULT =null;
+		 RESULT = SizeText.H4; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header_mark",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -367,8 +383,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 14: // header_mark ::= H5 
             {
-              Object RESULT =null;
-
+              Float RESULT =null;
+		 RESULT = SizeText.H5; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header_mark",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -376,8 +392,8 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 15: // header_mark ::= H6 
             {
-              Object RESULT =null;
-
+              Float RESULT =null;
+		 RESULT = SizeText.H6; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("header_mark",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

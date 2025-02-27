@@ -1,26 +1,31 @@
 package com.compi1.nodepad.scannerFiles.parser;
 
 import java_cup.runtime.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
 
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
-import com.compi1.nodepad.src.text_output.*
+import com.compi1.nodepad.src.text_output.*;
 
 parser code {:
 
-private List<TextSyntacOutput> data;
+  private List<TextSyntacOutput> data = new ArrayList<>();
 
-public void unrecovered_syntax_error(Symbol cur_token) {
-            System.out.println("Error irrecuperable sobrecargado");
-        }
+  public Parser( TextLexer lex) {
+        super(lex);
+  }
+
+  public List<TextSyntacOutput> getData(){
+        return data;
+  }
 
 :}
 
 /*      TERMINALES      */
 // Terminales de las cabeceras
-terminal H1, H2, H3, H4, H5, H6;
+terminal  H1, H2, H3, H4, H5, H6;
 
 // Terminales de los tipos de formatos
 terminal ITALIC, BOLD, ITALIC_BOLD;
@@ -32,7 +37,7 @@ terminal INIT_LIST, ITEM_NUM;
 terminal ITEM_LIST;
 
 // Terminales  de las oraciones
-terminal SENTENCE;
+terminal String SENTENCE;
 
 
 /*      NO TERMINALES   */
@@ -44,7 +49,7 @@ non terminal format;
 non terminal list;
 
 // No terminales asociados a cabecera
-non terminal header_mark;
+non terminal Float header_mark;
 
 // No terminales asociados a parrafo
 non terminal sentences;
@@ -85,15 +90,15 @@ text ::= text header
         | list
         ;
 
-header ::= header_mark SENTENCE {: Log.d("LexerDebug", "Se leyo un header"); :}
+header ::= header_mark:size_text SENTENCE:h_body {: data.add( new SizeText(h_body, size_text)); Log.d("LexerDebug", "Se leyo un header"); :}
         ;
 
-header_mark ::= H1
-              | H2
-              | H3
-              | H4
-              | H5
-              | H6
+header_mark ::= H1 {: RESULT = SizeText.H1; :}
+              | H2 {: RESULT = SizeText.H2; :}
+              | H3 {: RESULT = SizeText.H3; :}
+              | H4 {: RESULT = SizeText.H4; :}
+              | H5 {: RESULT = SizeText.H5; :}
+              | H6 {: RESULT = SizeText.H6; :}
               ;
 
 parragraph ::= sentences

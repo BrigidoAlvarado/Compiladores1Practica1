@@ -1,22 +1,25 @@
 package com.compi1.nodepad.src.text_output;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SizeText extends  Paragraph {
 
-    public static final int H1 = 26;
-    public static final int H2 = 24;
-    public static final int H3 = 22;
-    public static final int H4 = 20;
-    public static final int H5 = 18;
-    public static final int H6 = 16;
+    public static final float H1 = 3;
+    public static final float H2 = 2.75F;
+    public static final float H3 = 2.50F;
+    public static final float H4 = 2.25F;
+    public static final float H5 = 2;
+    public static final float H6 = 1.80F;
 
-    private int size;
+    private float size;
 
-    public SizeText(String body, int size){
+    public SizeText(String body, float size){
         super(body);
         this.size = size;
     }
 
-    public int getSize() {
+    public float getSize() {
         return size;
     }
 
