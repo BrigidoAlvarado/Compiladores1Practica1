@@ -6,6 +6,7 @@ import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import com.compi1.nodepad.src.text_output.FormatType
+import com.compi1.nodepad.src.text_output.NumberedList
 import com.compi1.nodepad.src.text_output.SizeText
 
 class Formatter {
@@ -52,6 +53,17 @@ class Formatter {
         val list = SpannableString(body)
         addSize(list)
         return list
+    }
+
+    fun numberedList( numberedList: NumberedList): SpannableString{
+        var body = "1. ${numberedList.firstItem}";
+        var counter = 1;
+        for ( arr in numberedList.items){
+            body += "${counter++}. ${arr[1]}"
+        }
+        val numberedList: SpannableString = SpannableString(body);
+        addSize(numberedList)
+        return  numberedList
     }
 
     private fun setBoldFormat(span:SpannableString){

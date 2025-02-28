@@ -4,6 +4,7 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer
 import com.compi1.nodepad.scannerFiles.parser.Parser
+import com.compi1.nodepad.src.text_output.NumberedList
 import com.compi1.nodepad.src.text_output.Paragraph
 import com.compi1.nodepad.src.text_output.SizeText
 import com.compi1.nodepad.src.text_output.StyleText
@@ -46,6 +47,9 @@ class TextTranslate {
                 }
                 is TextList -> {
                     spannable = formatter.list(syntacticOutput.items)
+                }
+                is NumberedList -> {
+                    spannable = formatter.numberedList(syntacticOutput)
                 }
             }
             textBuild.append(spannable)

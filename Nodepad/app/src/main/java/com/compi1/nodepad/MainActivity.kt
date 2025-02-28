@@ -27,7 +27,6 @@ class MainActivity : ComponentActivity() {
         //LAYOUT CONTENEDOR DE CELDAS
         val cellsContainer: LinearLayout = findViewById(R.id.cells_container_layout)
 
-
         //ACCION QUE EJECUTA EL BOTON DE AGREGAR CELDA DE TEXTO
         addTexButton.setOnClickListener{
 

@@ -1,11 +1,14 @@
 package com.compi1.nodepad.src.text_output;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TextList extends TextSyntacOutput{
 
-    protected List<String> items;
+    private final List<String> items;
 
+
+    
     public TextList(List<String> items){
         this.items = items;
         setLineBreak();
@@ -15,11 +18,16 @@ public class TextList extends TextSyntacOutput{
         return items;
     }
 
-    private void setLineBreak(){
+    protected void setLineBreak(){
         for (String item: items) {
             if (!item.endsWith("\n")){
                 item += "\n";
             }
         }
+    }
+
+    public String[] hola(){
+
+        return new String[]{"hola"} ;
     }
 }

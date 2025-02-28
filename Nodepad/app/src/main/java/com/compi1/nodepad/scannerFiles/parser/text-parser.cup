@@ -19,7 +19,7 @@ parser code {:
   }
 
   public List<TextSyntacOutput> getData(){
-        return data;
+        return data;    
   }
 
 :}
@@ -62,13 +62,13 @@ non terminal String italic;
 non terminal String italic_bold;
 
 // No terminales asociodos a lista
-non terminal numbered_list;
+non terminal List<String[]> numbered_list;
 non terminal no_numbered_list;
 
 // No terminales asociados a lista numerada
-non terminal first_item;
-non terminal numbered_items;
-non terminal NumberedList numbered_item;
+non terminal String         first_item;
+non terminal List<String[]> numbered_items;
+non terminal String[]       numbered_item;
 
 // No terminales asociados a lista no numerada
 non terminal List<String> no_numbered_items;
@@ -128,18 +128,18 @@ list ::= numbered_list
        | no_numbered_list
        ;
 
-numbered_list ::= first_item numbered_items
-                | first_item
+numbered_list ::= first_item:ss_init1 numbered_items:array_list1                 {: data.add(new  NumberedList(ss_init1, array_list1) );         Log.d("LexerDebug", "Se leyo una lista numerada"); :}                     
+                | first_item:ss_init                                             {: data.add(new  NumberedList(ss_init1, new ArrayList<>()) );   Log.d("LexerDebug", "Se leyo una lista numerada"); :}
                 ;
 
-first_item ::= INIT_LIST SENTENCE
+first_item ::= INIT_LIST SENTENCE:s_init                                          {: RESULT = s_init; :}
              ;
 
-numbered_items ::= numbered_items numbered_item
-                 | numbered_item
+numbered_items ::= numbered_items:array_list numbered_item:array_item1            {: array_list.add(array_item1); RESULT = array_list; :}
+                 | numbered_item:array_item                                       {: RESULT = new ArrayList<>(Arrays.asList(array_item)); :}
                  ;
 
-numbered_item ::= ITEM_NUM:item_num SENTENCE:s_num_list                            {: RESULT = new NumberedList( s_num_list, item_num) :}
+numbered_item ::= ITEM_NUM:item_num SENTENCE:n_item                                {: RESULT = new String[]{item_num, n_item}; :}
                 ;
 
 no_numbered_list ::= no_numbered_items:l_item_list                                 {: data.add(new TextList(l_item_list));  Log.d("LexerDebug", "Se leyo una lista no numerada"); :}
