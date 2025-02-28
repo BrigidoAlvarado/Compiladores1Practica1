@@ -32,7 +32,8 @@ terminal  H1, H2, H3, H4, H5, H6;
 terminal ITALIC, BOLD, ITALIC_BOLD;
 
 // Terminales de las listas numeradas
-terminal INIT_LIST, ITEM_NUM;
+terminal INIT_LIST;
+terminal String ITEM_NUM;
 
 // Terminales de las listas no numradas
 terminal ITEM_LIST;
@@ -67,7 +68,7 @@ non terminal no_numbered_list;
 // No terminales asociados a lista numerada
 non terminal first_item;
 non terminal numbered_items;
-non terminal numbered_item;
+non terminal NumberedList numbered_item;
 
 // No terminales asociados a lista no numerada
 non terminal List<String> no_numbered_items;
@@ -138,7 +139,7 @@ numbered_items ::= numbered_items numbered_item
                  | numbered_item
                  ;
 
-numbered_item ::= ITEM_NUM SENTENCE
+numbered_item ::= ITEM_NUM:item_num SENTENCE:s_num_list                            {: RESULT = new NumberedList( s_num_list, item_num) :}
                 ;
 
 no_numbered_list ::= no_numbered_items:l_item_list                                 {: data.add(new TextList(l_item_list));  Log.d("LexerDebug", "Se leyo una lista no numerada"); :}

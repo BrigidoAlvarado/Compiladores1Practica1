@@ -9,6 +9,7 @@ public class StyleText extends Paragraph {
     public StyleText(String body, FormatType type){
         super((body));
         this.type = type;
+
     }
 
     public FormatType getType() {
