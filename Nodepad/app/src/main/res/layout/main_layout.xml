@@ -3,7 +3,8 @@
     android:id="@+id/buttons_container_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbarStyle="outsideInset">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,13 +29,12 @@
     <ScrollView
         android:id="@+id/cell_scrollview"
         android:layout_width="match_parent"
-        android:layout_height="656dp"
-        android:background="@android:color/holo_orange_light">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/cells_container_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         </LinearLayout>

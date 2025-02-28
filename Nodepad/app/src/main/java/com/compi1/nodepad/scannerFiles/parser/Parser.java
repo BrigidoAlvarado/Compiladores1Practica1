@@ -402,7 +402,10 @@ class CUP$Parser$actions {
           case 16: // parragraph ::= sentences 
             {
               Object RESULT =null;
-
+		int sssleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int sssright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String sss = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add( new Paragraph(sss)); Log.d("LexerDebug", "Se leyo el parrafo: "+sss); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("parragraph",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -410,8 +413,14 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 17: // sentences ::= sentences SENTENCE 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int ssleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int ssright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String ss = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String s = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 RESULT = ss + s; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("sentences",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -419,8 +428,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 18: // sentences ::= SENTENCE 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int sleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int sright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String s = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 RESULT = s; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("sentences",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -429,7 +441,10 @@ class CUP$Parser$actions {
           case 19: // format ::= bold 
             {
               Object RESULT =null;
-
+		int ss_boldleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int ss_boldright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String ss_bold = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add( new StyleText( ss_bold, FormatType.bold )); Log.d("LexerDebug", "Se leyo un texto en negrita"); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("format",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -438,7 +453,10 @@ class CUP$Parser$actions {
           case 20: // format ::= italic 
             {
               Object RESULT =null;
-
+		int ss_italicleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int ss_italicright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String ss_italic = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add( new StyleText( ss_italic, FormatType.italic )); Log.d("LexerDebug", "Se leyo un texto en italica"); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("format",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -447,7 +465,10 @@ class CUP$Parser$actions {
           case 21: // format ::= italic_bold 
             {
               Object RESULT =null;
-
+		int ss_italic_boldleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int ss_italic_boldright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String ss_italic_bold = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add( new StyleText( ss_italic_bold, FormatType.italicBold )); Log.d("LexerDebug", "Se leyo un texto en negrita e italica"); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("format",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -455,8 +476,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 22: // bold ::= BOLD SENTENCE BOLD 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int s_boldleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int s_boldright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String s_bold = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 RESULT = s_bold; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("bold",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -464,8 +488,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 23: // italic ::= ITALIC SENTENCE ITALIC 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int s_italicleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int s_italicright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String s_italic = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 RESULT = s_italic; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("italic",8, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -473,8 +500,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 24: // italic_bold ::= ITALIC_BOLD SENTENCE ITALIC_BOLD 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int s_italic_boldleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int s_italic_boldright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String s_italic_bold = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 RESULT = s_italic_bold; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("italic_bold",9, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

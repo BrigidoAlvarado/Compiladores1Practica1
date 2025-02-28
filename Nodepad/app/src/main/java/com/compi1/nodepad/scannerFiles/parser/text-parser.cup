@@ -52,12 +52,12 @@ non terminal list;
 non terminal Float header_mark;
 
 // No terminales asociados a parrafo
-non terminal sentences;
+non terminal String sentences;
 
 // No terminales asociados a formato
-non terminal bold;
-non terminal italic;
-non terminal italic_bold;
+non terminal String bold;
+non terminal String italic;
+non terminal String italic_bold;
 
 // No terminales asociodos a lista
 non terminal numbered_list;
@@ -72,11 +72,13 @@ non terminal numbered_item;
 non terminal no_numbered_items;
 non terminal no_numbered_item;
 
-/*      REGLAS DE PRECEDENCIA   */
+
+/*    REGLAS DE PRECEDENCIA   */
 precedence right SENTENCE;
 precedence right ITEM_LIST;
 
-/*THER GRAMMAR*/
+
+/*    THER GRAMMAR      */
 
 start with text;
 
@@ -101,25 +103,25 @@ header_mark ::= H1 {: RESULT = SizeText.H1; :}
               | H6 {: RESULT = SizeText.H6; :}
               ;
 
-parragraph ::= sentences
+parragraph ::= sentences:sss               {: data.add( new Paragraph(sss)); Log.d("LexerDebug", "Se leyo el parrafo: "+sss); :}
              ;
 
-sentences ::= sentences SENTENCE
-            | SENTENCE
+sentences ::= sentences:ss SENTENCE:s     {: RESULT = ss + s; :}
+            | SENTENCE:s                  {: RESULT = s; :}
             ;
 
-format ::= bold
-         | italic
-         | italic_bold
+format ::= bold:ss_bold                                 {: data.add( new StyleText( ss_bold, FormatType.bold )); Log.d("LexerDebug", "Se leyo un texto en negrita"); :}
+         | italic:ss_italic                             {: data.add( new StyleText( ss_italic, FormatType.italic )); Log.d("LexerDebug", "Se leyo un texto en italica"); :}
+         | italic_bold:ss_italic_bold                   {: data.add( new StyleText( ss_italic_bold, FormatType.italicBold )); Log.d("LexerDebug", "Se leyo un texto en negrita e italica"); :}
          ;
 
-bold ::= BOLD SENTENCE BOLD
+bold ::= BOLD SENTENCE:s_bold BOLD                               {: RESULT = s_bold; :}
        ;
 
-italic ::= ITALIC SENTENCE ITALIC
+italic ::= ITALIC SENTENCE:s_italic  ITALIC                      {: RESULT = s_italic; :}
          ;
 
-italic_bold ::= ITALIC_BOLD SENTENCE ITALIC_BOLD
+italic_bold ::= ITALIC_BOLD SENTENCE:s_italic_bold ITALIC_BOLD   {: RESULT = s_italic_bold; :}
               ;
 
 list ::= numbered_list
@@ -140,11 +142,11 @@ numbered_items ::= numbered_items numbered_item
 numbered_item ::= ITEM_NUM SENTENCE
                 ;
 
-no_numbered_list ::= no_numbered_item no_numbered_items
+no_numbered_list ::= no_numbered_items no_numbered_item
                    | no_numbered_item
                    ;
 
-no_numbered_items ::= no_numbered_item no_numbered_items
+no_numbered_items ::= no_numbered_items no_numbered_item 
                     | no_numbered_item
                     ;
 

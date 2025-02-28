@@ -11,6 +11,7 @@ import com.compi1.nodepad.scannerFiles.parser.sym;
 %line
 %column
 %debug
+%unicode
 
 //codigo java
 
@@ -34,7 +35,7 @@ Word            = [a-zA-Z]+
 Number          = [0-9]+
 PunctuationMarks= ("."|","|"?"|"¿"|"¡"|"!"!":"|";")
 Alphanumeric    = ({Word}|{Number})+
-Sentence        = {Alphanumeric}({Alphanumeric}|{Space}|{PunctuationMarks})+{LineTerminator}?
+Sentence        = ({Alphanumeric}|{Space}|{PunctuationMarks}|{LineTerminator})+
 
 %%
 //Marcadores para las cabeceras

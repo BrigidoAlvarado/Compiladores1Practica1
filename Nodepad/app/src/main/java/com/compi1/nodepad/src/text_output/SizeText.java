@@ -1,8 +1,5 @@
 package com.compi1.nodepad.src.text_output;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SizeText extends  Paragraph {
 
     public static final float H1 = 3;
@@ -11,6 +8,7 @@ public class SizeText extends  Paragraph {
     public static final float H4 = 2.25F;
     public static final float H5 = 2;
     public static final float H6 = 1.80F;
+    public static final float TEXT = 1.5F;
 
     private float size;
 
@@ -21,9 +19,5 @@ public class SizeText extends  Paragraph {
 
     public float getSize() {
         return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 }

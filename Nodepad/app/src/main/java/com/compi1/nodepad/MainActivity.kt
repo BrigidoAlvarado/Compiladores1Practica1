@@ -1,9 +1,6 @@
 package com.compi1.nodepad
 
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -53,12 +50,6 @@ class MainActivity : ComponentActivity() {
                 //Se envia el output para su traduccion
                 val translateResult = textTranslate.translate(cellInputText.text.toString())
                 outputTextView.text = translateResult
-                /*val span = SpannableString ("Prueba size")
-                var num = 12
-                span.setSpan( RelativeSizeSpan(num.toFloat() ), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                outputTextView.text = span.toString()
-
-                 */
             }
         }
 

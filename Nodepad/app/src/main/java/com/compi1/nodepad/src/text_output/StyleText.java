@@ -2,7 +2,7 @@ package com.compi1.nodepad.src.text_output;
 
 public class StyleText extends Paragraph {
 
-    private FormatType type;
+    private final FormatType type;
 
     public StyleText(String body, FormatType type){
         super((body));
@@ -11,9 +11,5 @@ public class StyleText extends Paragraph {
 
     public FormatType getType() {
         return type;
-    }
-
-    public void setType(FormatType type) {
-        this.type = type;
     }
 }
