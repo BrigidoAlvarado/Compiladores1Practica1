@@ -1,5 +1,7 @@
 package com.compi1.nodepad.src.text_output;
 
+import java.util.List;
+
 public class SizeText extends  Paragraph {
 
     public static final float H1 = 3;
@@ -10,7 +12,7 @@ public class SizeText extends  Paragraph {
     public static final float H6 = 1.80F;
     public static final float TEXT = 1.5F;
 
-    private float size;
+    private final float size;
 
     public SizeText(String body, float size){
         super(body);

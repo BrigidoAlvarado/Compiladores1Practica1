@@ -1,5 +1,7 @@
 package com.compi1.nodepad.src.text_output;
 
+import java.util.List;
+
 public class StyleText extends Paragraph {
 
     private final FormatType type;
@@ -11,5 +13,9 @@ public class StyleText extends Paragraph {
 
     public FormatType getType() {
         return type;
+    }
+
+    public List<String> getlist(){
+        return  List.of("hla");
     }
 }

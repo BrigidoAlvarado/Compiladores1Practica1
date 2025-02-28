@@ -2,6 +2,7 @@ package com.compi1.nodepad.scannerFiles.parser;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.util.Log;
@@ -69,15 +70,13 @@ non terminal numbered_items;
 non terminal numbered_item;
 
 // No terminales asociados a lista no numerada
-non terminal no_numbered_items;
-non terminal no_numbered_item;
+non terminal List<String> no_numbered_items;
+non terminal String       no_numbered_item;
 
 
 /*    REGLAS DE PRECEDENCIA   */
 precedence right SENTENCE;
 precedence right ITEM_LIST;
-
-
 /*    THER GRAMMAR      */
 
 start with text;
@@ -110,9 +109,9 @@ sentences ::= sentences:ss SENTENCE:s     {: RESULT = ss + s; :}
             | SENTENCE:s                  {: RESULT = s; :}
             ;
 
-format ::= bold:ss_bold                                 {: data.add( new StyleText( ss_bold, FormatType.bold )); Log.d("LexerDebug", "Se leyo un texto en negrita"); :}
-         | italic:ss_italic                             {: data.add( new StyleText( ss_italic, FormatType.italic )); Log.d("LexerDebug", "Se leyo un texto en italica"); :}
-         | italic_bold:ss_italic_bold                   {: data.add( new StyleText( ss_italic_bold, FormatType.italicBold )); Log.d("LexerDebug", "Se leyo un texto en negrita e italica"); :}
+format ::= bold:ss_bold                                 {: data.add( new StyleText( ss_bold, FormatType.bold ));               Log.d("LexerDebug", "Se leyo un texto en negrita"); :}
+         | italic:ss_italic                             {: data.add( new StyleText( ss_italic, FormatType.italic ));           Log.d("LexerDebug", "Se leyo un texto en italica"); :}
+         | italic_bold:ss_italic_bold                   {: data.add( new StyleText( ss_italic_bold, FormatType.italicBold ));  Log.d("LexerDebug", "Se leyo un texto en negrita e italica"); :}
          ;
 
 bold ::= BOLD SENTENCE:s_bold BOLD                               {: RESULT = s_bold; :}
@@ -142,13 +141,12 @@ numbered_items ::= numbered_items numbered_item
 numbered_item ::= ITEM_NUM SENTENCE
                 ;
 
-no_numbered_list ::= no_numbered_items no_numbered_item
-                   | no_numbered_item
+no_numbered_list ::= no_numbered_items:l_item_list                                 {: data.add(new TextList(l_item_list));  Log.d("LexerDebug", "Se leyo una lista no numerada"); :}
                    ;
 
-no_numbered_items ::= no_numbered_items no_numbered_item 
-                    | no_numbered_item
+no_numbered_items ::= no_numbered_items:item_list no_numbered_item:sss_item        {: item_list.add(sss_item); RESULT = item_list; :}
+                    | no_numbered_item:ss_item                                     {: RESULT = new ArrayList<>(Arrays.asList(ss_item)); :}
                     ;
 
-no_numbered_item ::= ITEM_LIST SENTENCE
+no_numbered_item ::= ITEM_LIST SENTENCE:s_item                                     {: RESULT = s_item; :}
                    ;

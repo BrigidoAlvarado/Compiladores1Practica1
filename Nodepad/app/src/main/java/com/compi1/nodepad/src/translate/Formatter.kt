@@ -24,7 +24,7 @@ class Formatter {
                 setItalicBoldFormat(style)
             }
         }
-        style.setSpan(RelativeSizeSpan(SizeText.TEXT), 0, style.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        addSize(style)
         return style
     }
 
@@ -44,8 +44,14 @@ class Formatter {
         return tittle
     }
 
-    fun list(text: String){
-
+    fun list(items: List<String>): SpannableString{
+        var body = ""
+        for (item:String in items){
+            body = "$body \u2022 $item"
+        }
+        val list = SpannableString(body)
+        addSize(list)
+        return list
     }
 
     private fun setBoldFormat(span:SpannableString){
@@ -58,5 +64,9 @@ class Formatter {
 
     private fun setItalicBoldFormat( span: SpannableString){
         span.setSpan(StyleSpan(Typeface.BOLD_ITALIC), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    }
+
+    private fun addSize(span: SpannableString){
+        span.setSpan(RelativeSizeSpan(SizeText.TEXT), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
 }

@@ -2,12 +2,12 @@ package com.compi1.nodepad.src.translate
 
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.util.Log
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer
 import com.compi1.nodepad.scannerFiles.parser.Parser
 import com.compi1.nodepad.src.text_output.Paragraph
 import com.compi1.nodepad.src.text_output.SizeText
 import com.compi1.nodepad.src.text_output.StyleText
+import com.compi1.nodepad.src.text_output.TextList
 import com.compi1.nodepad.src.text_output.TextSyntacOutput
 import java.io.StringReader
 
@@ -23,7 +23,6 @@ class TextTranslate {
         val syntacticData = parser.data
 
         return formatter(syntacticData)
-        //return SpannableStringBuilder()
     }
 
     private fun formatter( syntacticData: List <TextSyntacOutput> ): SpannableStringBuilder{
@@ -45,8 +44,10 @@ class TextTranslate {
                 is Paragraph -> {
                     spannable = formatter.size(syntacticOutput.body, SizeText.TEXT)
                 }
+                is TextList -> {
+                    spannable = formatter.list(syntacticOutput.items)
+                }
             }
-
             textBuild.append(spannable)
         }
         return textBuild
