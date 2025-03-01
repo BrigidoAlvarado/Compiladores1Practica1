@@ -13,6 +13,7 @@ public class sym {
   public static final int ITALIC_BOLD = 10;
   public static final int ITALIC = 8;
   public static final int EOF = 0;
+  public static final int BREAKLINE = 15;
   public static final int BOLD = 9;
   public static final int H6 = 7;
   public static final int SENTENCE = 14;
@@ -38,7 +39,8 @@ public class sym {
   "INIT_LIST",
   "ITEM_NUM",
   "ITEM_LIST",
-  "SENTENCE"
+  "SENTENCE",
+  "BREAKLINE"
   };
 }
 

@@ -35,8 +35,7 @@ Word            = [a-zA-Z]+
 Number          = [0-9]+
 PunctuationMarks= ("."|","|"?"|"¿"|"¡"|"!"!":"|";")
 Alphanumeric    = ({Word}|{Number})+
-Sentence        = [^0-9][^"."][^\s]({Alphanumeric}|{Space}|{PunctuationMarks})*{LineTerminator}?
-
+Sentence        = [^"\*"][^0-9]({Alphanumeric}|{Space}|{PunctuationMarks})+{LineTerminator}?
 %%
 //Marcadores para las cabeceras
 "#"{Space}              { return symbol(sym.H1, yytext()); }
@@ -48,7 +47,7 @@ Sentence        = [^0-9][^"."][^\s]({Alphanumeric}|{Space}|{PunctuationMarks})*{
 
 
 //Lecutra de los marcadores para el tipo de formato de los textos
-\*                      { return symbol(sym.ITALIC, yytext()); }
+"\*"                    { return symbol(sym.ITALIC, yytext()); }
 \*\*                    { return symbol(sym.BOLD, yytext()); }
 \*\*\*                  { return symbol(sym.ITALIC_BOLD, yytext()); }
 
@@ -63,12 +62,12 @@ Sentence        = [^0-9][^"."][^\s]({Alphanumeric}|{Space}|{PunctuationMarks})*{
 
 
 //Lecuta de textos alfanumericos con espacios que pueden o no terminar con un salto de linea
-{Sentence}                  { return symbol(sym.SENTENCE, yytext()); }
+{Sentence}              { return symbol(sym.SENTENCE, yytext()); }
 
+{LineTerminator}        { return symbol(sym.BREAKLINE, yytext()); }         
 
 //Lectura de Errores
-[^]                     { return symbol(sym.error); }
-
+[^]                     { return symbol(sym.error, yytext()); }
 
 //Fin del archivo
 <<EOF>>                 { return symbol(sym.EOF);   }

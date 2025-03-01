@@ -4,6 +4,7 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer
 import com.compi1.nodepad.scannerFiles.parser.Parser
+import com.compi1.nodepad.src.text_output.LexerError
 import com.compi1.nodepad.src.text_output.NumberedList
 import com.compi1.nodepad.src.text_output.Paragraph
 import com.compi1.nodepad.src.text_output.SizeText
@@ -19,11 +20,16 @@ class TextTranslate {
         val reader  = StringReader(input)
         val lexer   = TextLexer(reader)
         val parser  = Parser(lexer)
+        try {
+            parser.parse()
+            val syntacticData = parser.data
+            return formatter(syntacticData)
+        }catch (e: RuntimeException){
+            val error = Formatter()
 
-        parser.parse()
-        val syntacticData = parser.data
+            return errorMessage()
+        }
 
-        return formatter(syntacticData)
     }
 
     private fun formatter( syntacticData: List <TextSyntacOutput> ): SpannableStringBuilder{
@@ -42,6 +48,9 @@ class TextTranslate {
                 is StyleText -> {
                     spannable = formatter.style(syntacticOutput.body, syntacticOutput.type)
                 }
+                is LexerError -> {
+                    spannable = formatter.redColor(syntacticOutput.body)
+                }
                 is Paragraph -> {
                     spannable = formatter.size(syntacticOutput.body, SizeText.TEXT)
                 }
@@ -55,5 +64,12 @@ class TextTranslate {
             textBuild.append(spannable)
         }
         return textBuild
+    }
+
+    private fun errorMessage():SpannableStringBuilder{
+        val message = "Error Inesperado :("
+        val builder = SpannableStringBuilder(message)
+        val formatter = Formatter()
+        return  builder.append(formatter.redColor(message))
     }
 }

@@ -42,6 +42,8 @@ terminal ITEM_LIST;
 // Terminales  de las oraciones
 terminal String SENTENCE;
 
+// Terminal del salto de linea
+terminal String BREAKLINE;
 
 /*      NO TERMINALES   */
 // No terminales asociados a texto
@@ -91,6 +93,10 @@ text ::= text header
         | format
         | text list
         | list
+        | text error:er        {: data.add( new LexerError((String)er)); :}
+        | error:er             {: data.add( new LexerError((String)er)); :}
+        | text BREAKLINE:bl    {: data.add( new Paragraph(bl));  :}
+        | BREAKLINE:bl         {: data.add( new Paragraph(bl));  :}
         ;
 
 header ::= header_mark:size_text SENTENCE:h_body {: data.add( new SizeText(h_body, size_text)); Log.d("LexerDebug", "Se leyo un header"); :}

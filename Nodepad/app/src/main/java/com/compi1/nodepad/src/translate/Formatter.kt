@@ -1,14 +1,18 @@
 package com.compi1.nodepad.src.translate
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import com.compi1.nodepad.src.text_output.FormatType
 import com.compi1.nodepad.src.text_output.NumberedList
 import com.compi1.nodepad.src.text_output.SizeText
 
+@Suppress("NAME_SHADOWING")
 class Formatter {
 
     fun style (body: String, type: FormatType): SpannableString{
@@ -61,9 +65,15 @@ class Formatter {
         for ( arr in numberedList.items){
             body += "${counter++}. ${arr[1]}"
         }
-        val numberedList: SpannableString = SpannableString(body);
+        val numberedList = SpannableString(body);
         addSize(numberedList)
         return  numberedList
+    }
+
+    fun redColor(body: String): SpannableString{
+        val span = SpannableString(body)
+        span.setSpan( ForegroundColorSpan( Color.RED), 0, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE )
+        return span
     }
 
     private fun setBoldFormat(span:SpannableString){
