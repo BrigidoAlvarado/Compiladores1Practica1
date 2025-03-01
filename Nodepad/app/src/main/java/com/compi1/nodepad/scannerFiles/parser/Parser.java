@@ -9,6 +9,7 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
 import android.util.Log;
 import com.compi1.nodepad.scannerFiles.lexer.TextLexer;
 import com.compi1.nodepad.src.text_output.*;
@@ -213,7 +214,7 @@ public class Parser extends java_cup.runtime.lr_parser {
   }
 
   public List<TextSyntacOutput> getData(){
-        return data;
+        return data;    
   }
 
 
@@ -529,8 +530,14 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 27: // numbered_list ::= first_item numbered_items 
             {
-              Object RESULT =null;
-
+              List<String[]> RESULT =null;
+		int ss_init1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int ss_init1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String ss_init1 = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int array_list1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int array_list1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		List<String[]> array_list1 = (List<String[]>)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add(new  NumberedList(ss_init1, array_list1) );         Log.d("LexerDebug", "Se leyo una lista numerada"); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("numbered_list",10, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -538,8 +545,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 28: // numbered_list ::= first_item 
             {
-              Object RESULT =null;
-
+              List<String[]> RESULT =null;
+		int ss_initleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int ss_initright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String ss_init = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 data.add(new  NumberedList(ss_init, new ArrayList<>()) );   Log.d("LexerDebug", "Se leyo una lista numerada"); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("numbered_list",10, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -547,8 +557,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // first_item ::= INIT_LIST SENTENCE 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int s_initleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int s_initright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String s_init = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 RESULT = s_init; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("first_item",12, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -556,8 +569,14 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // numbered_items ::= numbered_items numbered_item 
             {
-              Object RESULT =null;
-
+              List<String[]> RESULT =null;
+		int array_listleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int array_listright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		List<String[]> array_list = (List<String[]>)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int array_item1left = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int array_item1right = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String[] array_item1 = (String[])((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 array_list.add(array_item1); RESULT = array_list; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("numbered_items",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -565,8 +584,11 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 31: // numbered_items ::= numbered_item 
             {
-              Object RESULT =null;
-
+              List<String[]> RESULT =null;
+		int array_itemleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int array_itemright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String[] array_item = (String[])((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 RESULT = new ArrayList<>(Collections.singletonList(array_item)); 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("numbered_items",13, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -574,8 +596,14 @@ class CUP$Parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 32: // numbered_item ::= ITEM_NUM SENTENCE 
             {
-              Object RESULT =null;
-
+              String[] RESULT =null;
+		int item_numleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int item_numright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		String item_num = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		int n_itemleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int n_itemright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String n_item = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 RESULT = new String[]{item_num, n_item}; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("numbered_item",14, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

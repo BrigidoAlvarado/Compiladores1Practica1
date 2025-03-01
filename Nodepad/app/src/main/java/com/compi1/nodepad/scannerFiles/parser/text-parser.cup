@@ -4,6 +4,8 @@ import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
+
 
 import android.util.Log;
 
@@ -129,14 +131,14 @@ list ::= numbered_list
        ;
 
 numbered_list ::= first_item:ss_init1 numbered_items:array_list1                 {: data.add(new  NumberedList(ss_init1, array_list1) );         Log.d("LexerDebug", "Se leyo una lista numerada"); :}                     
-                | first_item:ss_init                                             {: data.add(new  NumberedList(ss_init1, new ArrayList<>()) );   Log.d("LexerDebug", "Se leyo una lista numerada"); :}
+                | first_item:ss_init                                             {: data.add(new  NumberedList(ss_init, new ArrayList<>()) );   Log.d("LexerDebug", "Se leyo una lista numerada"); :}
                 ;
 
 first_item ::= INIT_LIST SENTENCE:s_init                                          {: RESULT = s_init; :}
              ;
 
 numbered_items ::= numbered_items:array_list numbered_item:array_item1            {: array_list.add(array_item1); RESULT = array_list; :}
-                 | numbered_item:array_item                                       {: RESULT = new ArrayList<>(Arrays.asList(array_item)); :}
+                 | numbered_item:array_item                                       {: RESULT = new ArrayList<>(Collections.singletonList(array_item)); :}
                  ;
 
 numbered_item ::= ITEM_NUM:item_num SENTENCE:n_item                                {: RESULT = new String[]{item_num, n_item}; :}
