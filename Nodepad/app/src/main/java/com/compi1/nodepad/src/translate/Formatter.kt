@@ -57,7 +57,7 @@ class Formatter {
 
     fun numberedList( numberedList: NumberedList): SpannableString{
         var body = "1. ${numberedList.firstItem}";
-        var counter = 1;
+        var counter = 2;
         for ( arr in numberedList.items){
             body += "${counter++}. ${arr[1]}"
         }

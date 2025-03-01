@@ -35,7 +35,7 @@ Word            = [a-zA-Z]+
 Number          = [0-9]+
 PunctuationMarks= ("."|","|"?"|"¿"|"¡"|"!"!":"|";")
 Alphanumeric    = ({Word}|{Number})+
-Sentence        = ({Alphanumeric}|{Space}|{PunctuationMarks})+{LineTerminator}?
+Sentence        = [^0-9][^"."][^\s]({Alphanumeric}|{Space}|{PunctuationMarks})*{LineTerminator}?
 
 %%
 //Marcadores para las cabeceras

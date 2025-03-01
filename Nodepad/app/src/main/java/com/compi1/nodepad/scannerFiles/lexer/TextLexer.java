@@ -37,11 +37,11 @@ public class TextLexer implements java_cup.runtime.Scanner {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\0\1\1\1\14\1\14\1\2\22\0\1\3\1\6\1\0"+
-    "\1\10\6\0\1\11\1\15\1\4\1\0\1\5\1\0\1\4\1\12"+
-    "\10\13\1\7\1\4\3\0\1\4\1\0\32\4\6\0\32\4\12\0"+
-    "\1\14\32\0\1\0\1\4\35\0\1\4\u15c0\0\1\0\u097f\0\13\0"+
-    "\35\0\1\14\1\14\5\0\1\0\57\0\1\0\u0fa0\0\1\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\ud00f\0";
+    "\11\0\1\1\1\2\1\16\1\16\1\3\22\0\1\4\1\10\1\0"+
+    "\1\12\6\0\1\13\1\17\1\5\1\0\1\7\1\0\1\6\1\14"+
+    "\10\15\1\11\1\5\3\0\1\5\1\0\32\5\6\0\32\5\12\0"+
+    "\1\16\32\0\1\1\1\5\35\0\1\5\u15c0\0\1\1\u097f\0\13\1"+
+    "\35\0\1\16\1\16\5\0\1\1\57\0\1\1\u0fa0\0\1\1\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\ud00f\0";
 
   /** 
    * Translates characters to character classes
@@ -54,13 +54,13 @@ public class TextLexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\2\2\1\1\1\3\2\2\1\1\3\2"+
-    "\1\0\1\4\1\0\1\5\1\2\1\0\3\2\1\6"+
-    "\1\7\1\0\1\10\1\11\4\12\1\13\1\0\1\14"+
-    "\1\0\1\15\1\0\1\16";
+    "\1\0\3\1\1\2\3\1\1\0\1\3\1\0\1\4"+
+    "\3\0\1\5\1\6\1\7\1\6\1\10\1\11\2\12"+
+    "\3\6\1\13\1\0\1\6\1\0\1\14\1\0\1\15"+
+    "\1\0\1\16";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[37];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -85,14 +85,14 @@ public class TextLexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\16\0\34\0\52\0\70\0\106\0\124\0\142"+
-    "\0\160\0\16\0\176\0\214\0\214\0\16\0\232\0\250"+
-    "\0\266\0\304\0\322\0\340\0\356\0\16\0\16\0\374"+
-    "\0\16\0\34\0\16\0\34\0\214\0\322\0\16\0\u010a"+
-    "\0\16\0\u0118\0\16\0\u0126\0\16";
+    "\0\0\0\20\0\40\0\60\0\100\0\120\0\140\0\160"+
+    "\0\200\0\200\0\220\0\240\0\260\0\300\0\320\0\200"+
+    "\0\340\0\40\0\360\0\340\0\40\0\40\0\300\0\40"+
+    "\0\u0100\0\u0110\0\340\0\u0120\0\u0130\0\u0130\0\40\0\u0140"+
+    "\0\40\0\u0150\0\40";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[37];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -115,23 +115,22 @@ public class TextLexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\3\2\3\3\1\4\1\2\1\5\1\6\1\7\1\10"+
-    "\1\2\1\11\17\0\1\12\1\13\3\3\1\4\3\0"+
-    "\2\3\2\0\7\14\1\15\6\14\3\0\1\16\4\0"+
-    "\1\17\16\0\1\20\5\0\1\12\1\13\2\3\1\21"+
-    "\1\4\3\0\2\3\2\0\1\22\1\12\1\13\3\23"+
-    "\1\24\3\22\2\25\1\0\1\22\3\0\1\26\13\0"+
-    "\1\12\14\0\16\14\3\0\1\27\4\0\1\30\16\0"+
-    "\1\31\5\0\1\12\1\13\1\32\2\3\1\4\3\0"+
-    "\2\3\5\0\1\33\13\0\1\12\1\13\1\34\2\3"+
-    "\1\4\3\0\2\3\2\0\3\14\1\35\3\14\1\15"+
-    "\6\14\1\22\1\12\1\13\1\36\2\23\1\24\3\22"+
-    "\2\25\1\0\1\22\3\0\1\37\4\0\1\40\10\0"+
-    "\1\41\4\0\1\42\10\0\1\43\4\0\1\44\10\0"+
-    "\1\45\12\0";
+    "\6\2\1\3\3\2\1\4\1\5\1\6\1\7\1\2"+
+    "\1\10\7\11\1\0\10\11\20\0\4\11\1\12\2\11"+
+    "\1\0\2\11\1\13\14\11\1\0\3\11\1\14\4\11"+
+    "\7\0\1\15\10\0\2\16\2\0\10\16\2\17\1\0"+
+    "\1\16\4\11\1\20\2\11\1\0\10\11\1\21\4\0"+
+    "\11\21\1\0\2\21\3\0\1\22\5\21\1\23\3\21"+
+    "\1\0\2\21\4\0\6\21\1\24\2\21\1\0\1\21"+
+    "\4\0\1\25\17\0\1\26\13\0\2\16\2\0\1\27"+
+    "\7\16\2\17\1\0\1\16\2\0\1\30\1\31\4\21"+
+    "\1\32\3\0\2\21\4\0\1\30\1\31\1\33\3\21"+
+    "\1\32\1\0\1\34\1\0\2\21\4\0\1\30\15\0"+
+    "\11\35\1\36\6\35\4\0\1\37\5\0\1\40\5\0"+
+    "\20\35\4\0\1\41\5\0\1\42\11\0\1\43\13\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[308];
+    int [] result = new int[352];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -169,12 +168,12 @@ public class TextLexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\7\1\1\11\2\1\1\0\1\11\1\0"+
-    "\2\1\1\0\3\1\2\11\1\0\1\11\1\1\1\11"+
-    "\3\1\1\11\1\0\1\11\1\0\1\11\1\0\1\11";
+    "\1\0\1\1\1\11\5\1\1\0\1\1\1\0\1\1"+
+    "\3\0\2\1\1\11\2\1\2\11\1\1\1\11\3\1"+
+    "\1\0\1\1\1\0\1\11\1\0\1\11\1\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[37];
+    int [] result = new int[35];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -673,36 +672,36 @@ private Symbol symbol(int type, Object value){
           case 15: break;
           case 2: 
             System.out.println("line: "+(yyline+1)+" "+"col: "+(yycolumn+1)+" "+"match: --"+zzToPrintable(yytext())+"--");
-            System.out.println("action [66] { return symbol(sym.SENTENCE, yytext()); }");
-            { return symbol(sym.SENTENCE, yytext());
+            System.out.println("action [51] { return symbol(sym.ITALIC, yytext()); }");
+            { return symbol(sym.ITALIC, yytext());
             } 
             // fall through
           case 16: break;
           case 3: 
             System.out.println("line: "+(yyline+1)+" "+"col: "+(yycolumn+1)+" "+"match: --"+zzToPrintable(yytext())+"--");
-            System.out.println("action [51] { return symbol(sym.ITALIC, yytext()); }");
-            { return symbol(sym.ITALIC, yytext());
+            System.out.println("action [42] { return symbol(sym.H1, yytext()); }");
+            { return symbol(sym.H1, yytext());
             } 
             // fall through
           case 17: break;
           case 4: 
             System.out.println("line: "+(yyline+1)+" "+"col: "+(yycolumn+1)+" "+"match: --"+zzToPrintable(yytext())+"--");
-            System.out.println("action [42] { return symbol(sym.H1, yytext()); }");
-            { return symbol(sym.H1, yytext());
+            System.out.println("action [52] { return symbol(sym.BOLD, yytext()); }");
+            { return symbol(sym.BOLD, yytext());
             } 
             // fall through
           case 18: break;
           case 5: 
             System.out.println("line: "+(yyline+1)+" "+"col: "+(yycolumn+1)+" "+"match: --"+zzToPrintable(yytext())+"--");
-            System.out.println("action [52] { return symbol(sym.BOLD, yytext()); }");
-            { return symbol(sym.BOLD, yytext());
+            System.out.println("action [62] { return symbol(sym.ITEM_LIST, yytext()); }");
+            { return symbol(sym.ITEM_LIST, yytext());
             } 
             // fall through
           case 19: break;
           case 6: 
             System.out.println("line: "+(yyline+1)+" "+"col: "+(yycolumn+1)+" "+"match: --"+zzToPrintable(yytext())+"--");
-            System.out.println("action [62] { return symbol(sym.ITEM_LIST, yytext()); }");
-            { return symbol(sym.ITEM_LIST, yytext());
+            System.out.println("action [66] { return symbol(sym.SENTENCE, yytext()); }");
+            { return symbol(sym.SENTENCE, yytext());
             } 
             // fall through
           case 20: break;
