@@ -35,7 +35,7 @@ Word            = [a-zA-Z]+
 Number          = [0-9]+
 PunctuationMarks= ("."|","|"?"|"¿"|"¡"|"!"!":"|";")
 Alphanumeric    = ({Word}|{Number})+
-Sentence        = [^"\*"][^0-9]({Alphanumeric}|{Space}|{PunctuationMarks})+{LineTerminator}?
+Sentence        = {Word}({Alphanumeric}|{Space}|{PunctuationMarks})+{LineTerminator}?
 %%
 //Marcadores para las cabeceras
 "#"{Space}              { return symbol(sym.H1, yytext()); }
